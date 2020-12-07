@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Jornais
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<!-- https://www.flaticon.com/svg/static/icons/svg/2035/2035560.svg 
+     https://image.flaticon.com/icons/png/512/1992/1992521.png
+     https://image.flaticon.com/icons/png/512/1398/1398749.png
+     https://www.flaticon.com/svg/static/icons/svg/3532/3532132.svg
+-->
+<ion-content [fullscreen]="false" (load)="ionViewDidLoad()">
+
+  <ion-list>
+    
+    <ion-item-sliding *ngFor="let jornal of jornaisAPI">
+      <ion-item-options side="end">
+        <ion-item-option color="danger" expandable (click)="removerJornais(jornal)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+      <ion-item (click)="onEdit(jornal.id)">
+        <ion-thumbnail slot="start">
+          <ion-img src="https://www.flaticon.com/svg/static/icons/svg/3532/3532132.svg"></ion-img>
+        </ion-thumbnail>
+        <ion-label class="label">
+          <h2>{{jornal.editora}}</h2>
+          <h3>{{jornal.data}}</h3>
+          <p>{{jornal.cidade}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-item-sliding>
+
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['./jornais-novo']" color="success">
+      <ion-icon name="add-sharp"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

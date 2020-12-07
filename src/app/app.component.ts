@@ -16,6 +16,7 @@ export class AppComponent {
     private statusBar: StatusBar
   ) {
     this.initializeApp();
+    this.sideMenu();
   }
 
   initializeApp() {
@@ -23,5 +24,52 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  navigate: any;
+  sideMenu(){
+    this.navigate =
+    [
+      {
+        title : "Home",
+        url   : "/home",
+        icon  : "library-sharp"
+      },
+      {
+        title : 'Clientes',
+        url   : '/clientes',
+        icon  : 'people-sharp'
+      },
+      {
+        title : 'Livros',
+        url   : '/livros',
+        icon  : 'book-sharp'
+      },
+      {
+        title : 'Revistas',
+        url   : '/revistas',
+        icon  : 'journal-sharp'
+      },
+      {
+        title : "Jornais",
+        url   : "/jornais",
+        icon  : "reader-sharp",
+      },
+      {
+        title : "Musicas",
+        url   : "/musicas",
+        icon  : "disc-sharp",
+      },    
+      {
+        title : "Notebooks",
+        url   : "/notebooks",
+        icon  : "laptop-sharp",
+      },
+      {
+        title : "Configurações",
+        url   : "/configuracoes",
+        icon  : "settings-sharp"
+      }
+    ]
   }
 }

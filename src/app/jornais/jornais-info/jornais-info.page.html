@@ -1,0 +1,69 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title [hidden]="disable">
+      Editar informações
+    </ion-title>
+    <ion-title [hidden]="!disable">
+      Informações
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="false">
+  <ion-item>
+    <ion-thumbnail>
+      <ion-img src="https://www.flaticon.com/svg/static/icons/svg/3532/3532132.svg"></ion-img>
+    </ion-thumbnail>
+  </ion-item>
+  <form [formGroup]="formulario" (ngSubmit)="salvarJornal()">
+    <ion-item [disabled]="disable">
+      <ion-label position="stacked" color="dark">Editora:</ion-label>
+      <ion-input formControlName="editora" placeholder="Ex: O Globo"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!editora.hasError('required')" [hidden]="disable"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="editora.hasError('required') && editora.touched">Por favor, informe a editora.</ion-note>
+    </ion-item>
+
+    <ion-item [disabled]="disable">
+      <ion-label position="stacked" color="dark">Data:</ion-label>
+      <ion-input formControlName="data" placeholder="Ex: 22 setembro de 2017"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!data.hasError('required')" [hidden]="disable"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="data.hasError('required') && data.touched">Por favor, informe a data.</ion-note>
+    </ion-item>
+
+    <ion-item [disabled]="disable">
+      <ion-label position="stacked" color="dark">Edição:</ion-label>
+      <ion-input formControlName="edicao" placeholder="Ex: 342"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!edicao.hasError('required')" [hidden]="disable"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="edicao.hasError('required') && edicao.touched">Por favor, informe a edição.</ion-note>
+    </ion-item>
+
+    <ion-item [disabled]="disable">
+      <ion-label position="stacked" color="dark">Local:</ion-label>
+      <ion-input formControlName="cidade" placeholder="Ex: Rio de Janeiro"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!cidade.hasError('required')" [hidden]="disable"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="cidade.hasError('required') && cidade.touched">Por favor, informe a cidade.</ion-note>
+    </ion-item>
+
+    <ion-item [disabled]="disable">
+      <ion-label position="stacked" color="dark">Site:</ion-label>
+      <ion-input formControlName="site" placeholder="Ex: www.oglobo.com.br"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!site.hasError('required')" [hidden]="disable"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="site.hasError('required') && site.touched">Por favor, informe o site.</ion-note>
+    </ion-item >
+
+    <div class="button" [hidden]="disable">
+      <ion-button expand="full" color="success" type="submit" fill="clear" (click)="presentToast()" [disabled]="formulario.invalid">Salvar</ion-button>
+      <ion-button expand="full" color="dark" type="reset" fill="clear">Resetar</ion-button>
+    </div>
+  </form>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="isDesable()" [hidden]="!disable">
+    <ion-fab-button color="success">
+      <ion-icon name="pencil-sharp"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

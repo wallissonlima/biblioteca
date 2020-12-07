@@ -1,0 +1,90 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Cadastro livros
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="false">
+  <ion-item>
+    <ion-thumbnail>
+      <ion-img src="https://engrenagemvirtual.com.br/wp-content/uploads/2015/08/icones_Livros.png"></ion-img>
+    </ion-thumbnail>
+  </ion-item>
+  <form [formGroup]="formulario" (ngSubmit)="salvarLivro()">
+    <ion-item >
+      <ion-label position="stacked" color="dark">Título:</ion-label>
+      <ion-input formControlName="titulo" placeholder="Ex: Gigantes adormecidos"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!titulo.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="titulo.hasError('required') && titulo.touched">Por favor, informe o titulo.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">Autores:</ion-label>
+      <ion-input formControlName="autores" placeholder="Ex: Sylvain Neuvel"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!autores.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="autores.hasError('required') && autores.touched">Por favor, informe os autores.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">Editora:</ion-label>
+      <ion-input formControlName="editora" placeholder="Ex: Suma"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!editora.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="editora.hasError('required') && editora.touched">Por favor, informe a editora.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">Ano:</ion-label>
+      <ion-input formControlName="ano" placeholder="Ex: 2016" maxlength="4"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!ano.hasError('required') && ano.value < 2021"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="ano.hasError('required') && ano.touched">Por favor, informe o ano.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">Idioma:</ion-label>
+      <ion-input formControlName="idioma" placeholder="Ex: Portugues"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!idioma.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="idioma.hasError('required') && idioma.touched">Por favor, informe o idioma.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">Gênero:</ion-label>
+      <ion-input formControlName="genero" placeholder="Ex: Ficção cientifica"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!genero.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="genero.hasError('required') && genero.touched">Por favor, informe o gênero.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">Categoria:</ion-label>
+      <ion-input formControlName="categoria" placeholder="Ex: Livros"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!categoria.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="categoria.hasError('required') && categoria.touched">Por favor, informe a categoria.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">Páginas:</ion-label>
+      <ion-input formControlName="totPag" placeholder="Ex: 307" maxlength="4"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!totPag.hasError('required') && totPag.value < 3001"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="totPag.hasError('required') && totPag.touched">Por favor, informe a quantidade de páginas.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">Sinopse:</ion-label>
+      <ion-textarea formControlName="sinopse" rows="7"
+        placeholder="Ex: Rose estava...">
+      </ion-textarea>
+      <ion-note slot="end" color="success" *ngIf="!sinopse.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="sinopse.hasError('required') && sinopse.touched">Por favor, informe a sinopse.</ion-note>
+    </ion-item>
+
+    <div class="button">
+      <ion-button expand="full" color="success" type="submit" fill="clear" (click)="presentToast()" [disabled]="formulario.invalid">Salvar</ion-button>
+      <ion-button expand="full" color="dark" type="reset" fill="clear">Resetar</ion-button>
+    </div>
+  </form>
+
+</ion-content>

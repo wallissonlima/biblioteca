@@ -1,0 +1,75 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Cadastro notebooks
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="false">
+  <ion-item>
+    <ion-thumbnail>
+      <ion-img src="https://img.icons8.com/nolan/64/laptop.png"></ion-img>
+    </ion-thumbnail>
+  </ion-item>
+  <form [formGroup]="formulario" (ngSubmit)="salvarNotebook()">
+    <ion-item>
+      <ion-label position="stacked" color="dark">Nome:</ion-label>
+      <ion-input formControlName="nome" placeholder="Ex: Dell Inspiron"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!nome.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="nome.hasError('required') && nome.touched">Por favor, informe o nome.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">Marca:</ion-label>
+      <ion-input formControlName="marca" placeholder="Ex: DELL"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!marca.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="marca.hasError('required') && marca.touched">Por favor, informe a marca.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">Modelo:</ion-label>
+      <ion-input formControlName="modelo" placeholder="Ex: 14 7490p"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!modelo.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="modelo.hasError('required') && modelo.touched">Por favor, informe o modelo.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">Processador:</ion-label>
+      <ion-input formControlName="processador" placeholder="Ex: Intel Core i7 8540U"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!processador.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="processador.hasError('required') && processador.touched">Por favor, informe o processador.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">HD:</ion-label>
+      <ion-input formControlName="hd" placeholder="Ex: 1T"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!hd.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="hd.hasError('required') && hd.touched">Por favor, informe o HD.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">memória RAM:</ion-label>
+      <ion-input formControlName="ram" placeholder="Ex: 8GB"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!ram.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="ram.hasError('required') && ram.touched">Por favor, informe a memória RAM.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">Sistema operacional:</ion-label>
+      <ion-input formControlName="so" placeholder="Ex: Windows 10 Home edition"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!so.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="so.hasError('required') && so.touched">Por favor, informe o sistema operacional.</ion-note>
+    </ion-item>
+
+    <div class="button">
+      <ion-button expand="full" color="success" type="submit" fill="clear" (click)="presentToast()" [disabled]="formulario.invalid">Salvar</ion-button>
+      <ion-button expand="full" color="dark" type="reset" fill="clear">Resetar</ion-button>
+    </div>
+
+  </form>
+
+</ion-content>

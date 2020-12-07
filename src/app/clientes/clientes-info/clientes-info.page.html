@@ -1,0 +1,97 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title [hidden]="disable">
+      Editar informações
+    </ion-title>
+    <ion-title [hidden]="!disable">
+      Informações
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="false">
+  <ion-item>
+    <ion-thumbnail>
+      <ion-img src="https://icons-for-free.com/iconfiles/png/512/agenda+app+contacts+online+profile+user+icon-1320183042135412367.png"></ion-img>
+    </ion-thumbnail>
+  </ion-item>
+  <form [formGroup]="formulario" (ngSubmit)="salvarCliente()">
+    <ion-item [disabled]="disable">
+      <ion-label position="stacked" color="dark">Nome completo:</ion-label>
+      <ion-input formControlName="nome" placeholder="Ex: Fulano de Tal Rocha"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!nome.hasError('required')" [hidden]="disable"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="nome.hasError('required') && nome.touched">Por favor, informe o nome completo.</ion-note>
+    </ion-item>
+
+    <ion-item [disabled]="disable">
+      <ion-label position="stacked" color="dark">CPF:</ion-label>
+      <ion-input formControlName="cpf" placeholder="Ex: 000.000.000-00"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!cpf.hasError('required')" [hidden]="disable"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="cpf.hasError('required') && cpf.touched">Por favor, informe o CPF.</ion-note>
+    </ion-item>
+
+    <ion-item [disabled]="disable">
+      <ion-label position="stacked" color="dark">E-mail:</ion-label>
+      <ion-input formControlName="email" placeholder="Ex: fulano.tal@gmail.com"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!email.hasError('required')" [hidden]="disable"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="email.hasError('required') && email.touched">Por favor, informe o e-mail.</ion-note>
+    </ion-item>
+
+    <ion-item [disabled]="disable">
+      <ion-label position="stacked" color="dark">Celular:</ion-label>
+      <ion-input formControlName="celular" placeholder="Ex: 00 00000-0000"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!celular.hasError('required')" [hidden]="disable"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="celular.hasError('required') && celular.touched">Por favor, informe o celular.</ion-note>
+    </ion-item>
+
+    <ion-item [disabled]="disable">
+      <ion-label position="stacked" color="dark">CEP:</ion-label>
+      <ion-input formControlName="cep" placeholder="Ex: 00.000-000" (ionBlur)="consultaCEP()"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!cep.hasError('required')" [hidden]="disable"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="cep.hasError('required') && cep.touched">Por favor, informe o CEP.</ion-note>
+    </ion-item>
+
+    <ion-item [disabled]="disable">
+      <ion-label position="stacked" color="dark">Logradouro:</ion-label>
+      <ion-input formControlName="logradouro" placeholder="Ex: Rua 00 Quadra 00 Lote 00"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!logradouro.hasError('required')" [hidden]="disable"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="logradouro.hasError('required') && logradouro.touched">Por favor, informe o logradouro.</ion-note>
+    </ion-item>
+
+    <ion-item [disabled]="disable">
+      <ion-label position="stacked" color="dark">Bairro:</ion-label>
+      <ion-input formControlName="bairro" placeholder="Ex: Jardim dos Fulanos"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!bairro.hasError('required')" [hidden]="disable"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="bairro.hasError('required') && bairro.touched">Por favor, informe o bairro.</ion-note>
+    </ion-item>
+
+    <ion-item [disabled]="disable">
+      <ion-label position="stacked" color="dark">Cidade:</ion-label>
+      <ion-input formControlName="cidade" placeholder="Ex: Fulanolandia"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!cidade.hasError('required')" [hidden]="disable"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="cidade.hasError('required') && cidade.touched">Por favor, informe a cidade.</ion-note>
+    </ion-item>
+
+    <ion-item [disabled]="disable">
+      <ion-label position="stacked" color="dark">UF:</ion-label>
+      <ion-input formControlName="uf" placeholder="Ex: FU"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!uf.hasError('required')" [hidden]="disable"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="uf.hasError('required') && uf.touched">Por favor, informe o UF.</ion-note>
+    </ion-item>
+
+    <div class="button" [hidden]="disable">
+      <ion-button expand="full" color="success" type="submit" fill="clear" (click)="presentToast()" [disabled]="formulario.invalid">Salvar</ion-button>
+      <ion-button expand="full" color="dark" type="reset" fill="clear">Resetar</ion-button>
+    </div>
+  </form>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="isDesable()" [hidden]="!disable">
+    <ion-fab-button color="success">
+      <ion-icon name="pencil-sharp"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+</ion-content>

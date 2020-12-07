@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Revistas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="false" (load)="ionViewDidLoad()">
+  <ion-list>
+
+    <ion-item-sliding *ngFor="let revista of revistasAPI">
+      <ion-item-options side="end">
+        <ion-item-option color="danger" expandable (click)="removerRevistas(revista)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+      <ion-item (click)="onEdit(revista.id)">
+        <ion-thumbnail slot="start">
+          <!-- https://img.icons8.com/nolan/64/magazine.png -->
+          <ion-img src="https://cdn4.iconfinder.com/data/icons/111-seo-services-pack/128/new_seo-37-512.png"></ion-img>
+        </ion-thumbnail>
+        <ion-label class="label">
+          <h2>{{revista.titulo}}</h2>
+          <h3>{{revista.revista}}</h3>
+          <p>{{revista.edicao}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-item-sliding>
+
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['./revistas-novo']" color="success">
+      <ion-icon name="add-sharp"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Cadastro Jornais
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="false">
+  <ion-item>
+    <ion-thumbnail>
+      <ion-img src="https://www.flaticon.com/svg/static/icons/svg/3532/3532132.svg"></ion-img>
+    </ion-thumbnail>
+  </ion-item>
+  <form [formGroup]="formulario" (ngSubmit)="salvarJornal()">
+    <ion-item>
+      <ion-label position="stacked" color="dark">Editora:</ion-label>
+      <ion-input formControlName="editora" placeholder="Ex: O Globo"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!editora.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="editora.hasError('required') && editora.touched">Por favor, informe a editora.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">Data:</ion-label>
+      <ion-input formControlName="data" placeholder="Ex: 22 setembro de 2017"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!data.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="data.hasError('required') && data.touched">Por favor, informe a data.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">Edição:</ion-label>
+      <ion-input formControlName="edicao" placeholder="Ex: 342"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!edicao.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="edicao.hasError('required') && edicao.touched">Por favor, informe a edição.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">Local:</ion-label>
+      <ion-input formControlName="cidade" placeholder="Ex: Rio de Janeiro"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!cidade.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="cidade.hasError('required') && cidade.touched">Por favor, informe a cidade.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">Site:</ion-label>
+      <ion-input formControlName="site" placeholder="Ex: www.oglobo.com.br"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!site.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="site.hasError('required') && site.touched">Por favor, informe o site.</ion-note>
+    </ion-item>
+
+    <div class="button">
+      <ion-button expand="full" color="success" type="submit" fill="clear" (click)="presentToast()" [disabled]="formulario.invalid">Salvar</ion-button>
+      <ion-button expand="full" color="dark" type="reset" fill="clear">Resetar</ion-button>
+    </div>
+
+  </form>
+</ion-content>

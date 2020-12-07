@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Cadastro álbuns
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="false">
+  <ion-item>
+    <ion-thumbnail>
+      <ion-img src="https://img.icons8.com/nolan/64/music-library.png"></ion-img>
+    </ion-thumbnail>
+  </ion-item>
+  <form [formGroup]="formulario" (ngSubmit)="salvarMusica()">
+    <ion-item >
+      <ion-label position="stacked" color="dark">Nome do album:</ion-label>
+      <ion-input formControlName="nomeAlbum" placeholder="Ex: Random Access Memories"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!nomeAlbum.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="nomeAlbum.hasError('required') && nomeAlbum.touched">Por favor, informe o nome.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">Cantores:</ion-label>
+      <ion-input formControlName="cantor" placeholder="Ex: Daft Punk"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!cantor.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="cantor.hasError('required') && cantor.touched">Por favor, informe os cantores.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">Quantidade de faixas:</ion-label>
+      <ion-input formControlName="qFaixa" placeholder="Ex: 15"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!qFaixa.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="qFaixa.hasError('required') && qFaixa.touched">Por favor, informe a quantidade.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">Ano de publicação:</ion-label>
+      <ion-input formControlName="anoAlbum" placeholder="Ex: 1995" maxlength="4"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!anoAlbum.hasError('required') && anoAlbum.value < 2021"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="anoAlbum.hasError('required') && anoAlbum.touched">Por favor, informe o ano.</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" color="dark">Formato:</ion-label>
+      <ion-input formControlName="material" placeholder="Ex: Disco de vinil"></ion-input>
+      <ion-note slot="end" color="success" *ngIf="!material.hasError('required')"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-note>
+      <ion-note slot="end" color="danger" *ngIf="material.hasError('required') && material.touched">Por favor, informe o formato.</ion-note>
+    </ion-item>
+
+    <div class="button">
+      <ion-button expand="full" color="success" type="submit" fill="clear" (click)="presentToast()" [disabled]="formulario.invalid">Salvar</ion-button>
+      <ion-button expand="full" color="dark" type="reset" fill="clear">Resetar</ion-button>
+    </div>
+  </form>
+
+</ion-content>
